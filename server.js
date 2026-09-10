@@ -97,7 +97,7 @@ app.delete("/students/:id", (req, res) => {
 })
 
 const __dirname = path.resolve();//D:\shariq\saylani-batch-18\react-with-server\ecom-without-db
-const __frontend = path.join(__dirname, './web/.next')//D:\shariq\saylani-batch-18\react-with-server\ecom-without-db\web\.next
+const __frontend = path.join(__dirname, './web/dist')//D:\shariq\saylani-batch-18\react-with-server\ecom-without-db\web\.next
 app.use('/', express.static(__frontend))
 app.use("/*splat", express.static(__frontend))
 
