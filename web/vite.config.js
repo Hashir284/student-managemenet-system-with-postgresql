@@ -6,6 +6,7 @@ import babel from '@rolldown/plugin-babel'
 export default defineConfig({
   plugins: [
     react(),
+    tailwindcss(),
     babel({ presets: [reactCompilerPreset()] })
   ],
 })
