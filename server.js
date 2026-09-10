@@ -87,8 +87,8 @@ app.delete("/api/students/:id", (req, res) => {
 
 const PORT = 4000
 
-app.listen(PORT, () => {
-    console.log(`App is Running On Port ${PORT}`)
-})
+// app.listen(PORT, () => {
+//     console.log(`App is Running On Port ${PORT}`)
+// })
 
 export default app
