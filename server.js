@@ -8,23 +8,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-
-app.get('/',(req, res)=>{
-  db.query(`DROP TABLE IF EXISTS students`)
-  
-  db.query(`
-  CREATE TABLE students (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    batch VARCHAR(50) NOT NULL,
-    course VARCHAR(100) NOT NULL,
-    email VARCHAR(150) NOT NULL,
-    rollnumber VARCHAR(50) NOT NULL
-  )`)
-  res.send("Table created successfully")
-})
-
-app.get('/students', (req, res) => {
+app.get('/api/students', (req, res) => {
   db.query('SELECT * FROM students', (err, result) => {
     if (err) {
       console.error("Error fetching students:", err)
@@ -34,7 +18,7 @@ app.get('/students', (req, res) => {
   })
 })
 
-app.get('/students/:id', (req, res) => {
+app.get('/api/students/:id', (req, res) => {
   const { id } = req.params
 
   db.query('SELECT * FROM students WHERE id=$1', [id], (err, result) => {
@@ -49,7 +33,7 @@ app.get('/students/:id', (req, res) => {
   })
 })
 
-app.post("/students", (req, res) => {
+app.post("/api/students", (req, res) => {
   const { name, batch, course, email, rollnumber } = req.body
     if(!name || !batch || !course || !email || !rollnumber) {
     return res.status(400).send({ error: "All fields are required" })
@@ -67,7 +51,7 @@ app.post("/students", (req, res) => {
   )
 })
 
-app.put("/students/:id", (req, res) => {
+app.put("/api/students/:id", (req, res) => {
   const { id } = req.params
   const { name, batch, course, email, rollnumber } = req.body
 
@@ -84,7 +68,7 @@ app.put("/students/:id", (req, res) => {
   )
 })
 
-app.delete("/students/:id", (req, res) => {
+app.delete("/api/students/:id", (req, res) => {
   const { id } = req.params
 
   db.query(`DELETE FROM students WHERE id=$1 RETURNING *`, [id], (err, result) => {
@@ -96,13 +80,15 @@ app.delete("/students/:id", (req, res) => {
   })
 })
 
-const __dirname = path.resolve();//D:\shariq\saylani-batch-18\react-with-server\ecom-without-db
-const __frontend = path.join(__dirname, './web/dist')//D:\shariq\saylani-batch-18\react-with-server\ecom-without-db\web\.next
-app.use('/', express.static(__frontend))
-app.use("/*splat", express.static(__frontend))
+// const __dirname = path.resolve();//D:\shariq\saylani-batch-18\react-with-server\ecom-without-db
+// const __frontend = path.join(__dirname, './web/dist')//D:\shariq\saylani-batch-18\react-with-server\ecom-without-db\web\.next
+// app.use('/', express.static(__frontend))
+// app.use("/*splat", express.static(__frontend))
 
 const PORT = 4000
 
 app.listen(PORT, () => {
     console.log(`App is Running On Port ${PORT}`)
 })
+
+export default app
