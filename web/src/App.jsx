@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 
 // Express API endpoint (port 4000)
-const API_URL = "http://localhost:4000";
+const API_URL = "";
 
 export default function StudentManagementSystem() {
   const [students, setStudents] = useState([]);
