@@ -80,15 +80,15 @@ app.delete("/api/students/:id", (req, res) => {
   })
 })
 
-// const __dirname = path.resolve();//D:\shariq\saylani-batch-18\react-with-server\ecom-without-db
-// const __frontend = path.join(__dirname, './web/dist')//D:\shariq\saylani-batch-18\react-with-server\ecom-without-db\web\.next
-// app.use('/', express.static(__frontend))
-// app.use("/*splat", express.static(__frontend))
+const __dirname = path.resolve()
+const __frontend = path.join(__dirname, './web/dist')
+app.use('/', express.static(__frontend))
+app.use("/*splat", express.static(__frontend))
 
 const PORT = 4000
 
-// app.listen(PORT, () => {
-//     console.log(`App is Running On Port ${PORT}`)
-// })
+app.listen(PORT, () => {
+    console.log(`App is Running On Port ${PORT}`)
+})
 
 export default app
